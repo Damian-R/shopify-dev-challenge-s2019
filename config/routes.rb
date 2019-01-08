@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :cart
   resources :items
 
-  get '/addtocart/:item_id' => 'cart#add_to_cart', :as => 'add_to_cart'
+  get '/cart/add/:item_id' => 'cart#add_to_cart', :as => 'add_to_cart'
+  get '/items/:id/purchase' => 'items#purchase', :as => 'purchase'
+  get '/cart/checkout' => 'cart#checkout', :as => 'checkout'
 end
