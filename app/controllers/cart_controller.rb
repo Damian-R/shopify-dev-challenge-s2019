@@ -28,7 +28,17 @@ class CartController < ApplicationController
   end
 
   def checkout
-    
-  end
+    cart_items = active_cart.cart_items
 
+    purchased_items = []
+
+    cart_items.each do |cart_item|
+      item = ensure_item_exists(cart_item.item_id)
+      remaining_inventory = item.inventory_count - cart_item.quantity
+      item.update!(inventory_count: remaining_inventory)
+      purchased_items << { title: item.title, quantity: cart_item.quantity, remaining_inventory: remaining_inventory }
+      cart_item.destroy
+    end
+    render json: { purchased_items: purchased_items }, status: :ok
+  end
 end
