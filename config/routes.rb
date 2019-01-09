@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get '/cart/add/:item_id' => 'cart#add_to_cart', :as => 'add_to_cart'
   get '/items/:id/purchase' => 'items#purchase', :as => 'purchase'
   get '/cart/checkout' => 'cart#checkout', :as => 'checkout'
+  get '/cart/discount/:code' => 'cart#add_discount', :as => 'discount'
 end

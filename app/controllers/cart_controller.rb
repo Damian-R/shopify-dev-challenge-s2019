@@ -27,6 +27,13 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def add_discount
+    if params[:code] == ENV['DISCOUNT_CODE']
+      active_cart.update!(discount_code: params[:code])
+    end
+    redirect_to '/cart'
+  end
+
   def checkout
     cart_items = active_cart.cart_items
 
@@ -36,7 +43,7 @@ class CartController < ApplicationController
       item = ensure_item_exists(cart_item.item_id)
       remaining_inventory = item.inventory_count - cart_item.quantity
       item.update!(inventory_count: remaining_inventory)
-      purchased_items << { title: item.title, quantity: cart_item.quantity, remaining_inventory: remaining_inventory }
+      purchased_items << { title: item.title, quantity_in_cart: cart_item.quantity, remaining_inventory: remaining_inventory }
       cart_item.destroy
     end
     render json: { purchased_items: purchased_items }, status: :ok
