@@ -1,5 +1,6 @@
 class CartController < ApplicationController
   def index
+    active_cart.check_inventory
     render json: { cart_meta: active_cart, cart_items: active_cart.items }
   end
 
@@ -43,9 +44,9 @@ class CartController < ApplicationController
       item = ensure_item_exists(cart_item.item_id)
       remaining_inventory = item.inventory_count - cart_item.quantity
       item.update!(inventory_count: remaining_inventory)
-      purchased_items << { title: item.title, quantity_in_cart: cart_item.quantity, remaining_inventory: remaining_inventory }
+      purchased_items << { title: item.title, quantity_purchased: cart_item.quantity, remaining_inventory: remaining_inventory }
       cart_item.destroy
     end
-    render json: { purchased_items: purchased_items }, status: :ok
+    render json: { amount_paid: active_cart.total, purchased_items: purchased_items }, status: :ok
   end
 end
