@@ -7,7 +7,6 @@
 default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  port: 5433
   timeout: 5000
 
 development:
@@ -24,4 +23,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: test_prod
