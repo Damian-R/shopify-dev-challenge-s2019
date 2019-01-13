@@ -1,5 +1,6 @@
 # Shopify Summer 2019 Backend Developer Intern Challenge
 This is my submission for the Shopify Summer 2019 Backend Developer Intern Challenge.
+
 https://damian-reiter-shopify-dev.herokuapp.com
 
 I created the barebones online marketplace using Ruby on Rails.
@@ -23,24 +24,37 @@ It supports all the basic functionality requested, as well as a session-based sh
 The `Item` model represents each item for sale.
 
 Schema:
-  - `title: String`
-  - `price: Float`
-  - `inventory_count: Integer`
-  - `category: String`
+```
+  - title: String
+  - price: Float
+  - inventory_count: Integer
+  - category: String
+```
 
 ## CartItem
 The `CartItem` model is simply a reference to a specific `Item` and `Cart`.
 
 A single `Item` can have many `CartItems`. For example:
 
-![](https://i.gyazo.com/5a98797efc5dc5642fb879fcc3813f78.png)
+```
+      Item 1
+         |
+ ------------------------------------
+ |                 |                |
+CartItem 1        CartItem 2       CartItem 3
+ |-- cart_id: 1    |-- cart_id: 4   |-- cart_id: 7
+ |-- item_id: 1    |-- item_id: 1   |-- item_id: 1
+ |-- quantity: 2   |-- quantity: 1  |-- quantity: 5
+```
 
 This shows that carts 1, 4, and 7 each contain varying quantities of Item 1.
 
 Schema:
-  - `item_id: Integer`
-  - `cart_id: Integer`
-  - `quantity: Integer, default => 1`
+```
+  - item_id: Integer
+  - cart_id: Integer
+  - quantity: Integer, default => 1
+```
 
 ## Cart
 The `Cart` model is used as a collection of `CartItems`.
@@ -52,9 +66,9 @@ Each `Cart` is tied to a user session. On each new session, a new `Cart` will be
 You can checkout your `Cart` by visiting `/cart/checkout`. When you checkout, each `CartItem` in your `Cart` is iterated over. Each `CartItem` has its corresponding `Item`'s `inventory_count` updated to reflect the quantity purchased. `Cart#check_inventory` ensures that a `CartItem`'s `quantity` cannot be greater than the corresponding `Item`'s `inventory_count` due to multiple active `Carts` containing the same items.
 
 Schema:
-  - `subtotal: Float`
-  - `total: Float`
-  - `discount: Float`
-  - `discount_code: String`
-
-
+```
+  - subtotal: Float
+  - total: Float
+  - discount: Float
+  - discount_code: String
+```
