@@ -1,5 +1,6 @@
 # Shopify Summer 2019 Backend Developer Intern Challenge
 This is my submission for the Shopify Summer 2019 Backend Developer Intern Challenge.
+https://damian-reiter-shopify-dev.herokuapp.com
 
 I created the barebones online marketplace using Ruby on Rails.
 It supports all the basic functionality requested, as well as a session-based shopping cart, discount codes, and item filtering by category.
@@ -29,6 +30,19 @@ Schema:
 
 ## CartItem
 The `CartItem` model is simply a reference to a specific `Item` and `Cart`.
+
+A single `Item` can have many `CartItems`. For example:
+
+      Item 1
+         |
+ ------------------------------------
+ |                 |                |
+CartItem 1        CartItem 2       CartItem 3
+ |-- cart_id: 1    |-- cart_id: 4   |-- cart_id: 7
+ |-- item_id: 1    |-- item_id: 1   |-- item_id: 1
+ |-- quantity: 2   |-- quantity: 1  |-- quantity: 5
+
+This shows that carts 1, 4, and 7 each contain varying quantities of Item 1.
 
 Schema:
   - `item_id: Integer`
