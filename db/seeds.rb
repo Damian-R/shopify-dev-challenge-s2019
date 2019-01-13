@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Item.destroy_all
+Cart.destroy_all
+CartItem.destroy_all
+
 Item.create(title: 'product 1', price: 10.4, inventory_count: 8, category: 'cars')
 Item.create(title: 'product 2', price: 4.0, inventory_count: 2, category: 'cars')
 Item.create(title: 'product 3', price: 5.7, inventory_count: 0, category: 'cars')
