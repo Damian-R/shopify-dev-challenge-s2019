@@ -10,6 +10,10 @@ Item.destroy_all
 Cart.destroy_all
 CartItem.destroy_all
 
+ActiveRecord::Base.connection.reset_pk_sequence!('items')
+ActiveRecord::Base.connection.reset_pk_sequence!('carts')
+ActiveRecord::Base.connection.reset_pk_sequence!('cart_items')
+
 Item.create(title: 'product 1', price: 10.4, inventory_count: 8, category: 'cars')
 Item.create(title: 'product 2', price: 4.0, inventory_count: 2, category: 'cars')
 Item.create(title: 'product 3', price: 5.7, inventory_count: 0, category: 'cars')
