@@ -21,8 +21,19 @@ It supports all the basic functionality requested, as well as a session-based sh
 ## Item
 The `Item` model represents each item for sale.
 
+Schema:
+  - `title: String`
+  - `price: Float`
+  - `inventory_count: Integer`
+  - `category: String`
+
 ## CartItem
 The `CartItem` model is simply a reference to a specific `Item` and `Cart`.
+
+Schema:
+  - `item_id: Integer`
+  - `cart_id: Integer`
+  - `quantity: Integer, default => 1`
 
 ## Cart
 The `Cart` model is used as a collection of `CartItems`.
@@ -33,5 +44,10 @@ Each `Cart` is tied to a user session. On each new session, a new `Cart` will be
 
 You can checkout your `Cart` by visiting `/cart/checkout`. When you checkout, each `CartItem` in your `Cart` is iterated over. Each `CartItem` has its corresponding `Item`'s `inventory_count` updated to reflect the quantity purchased. `Cart#check_inventory` ensures that a `CartItem`'s `quantity` cannot be greater than the corresponding `Item`'s `inventory_count` due to multiple active `Carts` containing the same items.
 
+Schema:
+  - `subtotal: Float`
+  - `total: Float`
+  - `discount: Float`
+  - `discount_code: String`
 
 
