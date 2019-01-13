@@ -33,14 +33,7 @@ The `CartItem` model is simply a reference to a specific `Item` and `Cart`.
 
 A single `Item` can have many `CartItems`. For example:
 
-      Item 1
-         |
- ------------------------------------
- |                 |                |
-CartItem 1        CartItem 2       CartItem 3
- |-- cart_id: 1    |-- cart_id: 4   |-- cart_id: 7
- |-- item_id: 1    |-- item_id: 1   |-- item_id: 1
- |-- quantity: 2   |-- quantity: 1  |-- quantity: 5
+![](https://i.gyazo.com/5a98797efc5dc5642fb879fcc3813f78.png)
 
 This shows that carts 1, 4, and 7 each contain varying quantities of Item 1.
 
