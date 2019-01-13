@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     render json: { message: 'record not found' }, status: :error
   end
 
+  # Catch-all route
   def no_route
     render json: { message: 'route not found' }, status: :error
   end

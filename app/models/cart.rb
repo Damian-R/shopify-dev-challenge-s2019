@@ -1,3 +1,5 @@
+# class Cart
+# Represents a collection of items tied to a specific user's session.
 class Cart < ApplicationRecord
   has_many :cart_items
   before_save :subtotal, :discount

@@ -1,9 +1,12 @@
 class CartController < ApplicationController
+
+  # Index route to display user's cart information
   def index
     active_cart.check_inventory
     render json: { cart_meta: active_cart, cart_items: active_cart.items }
   end
 
+  # Route to add item to user's active cart
   def add_to_cart
     item_id = params[:item_id].to_i
     item = ensure_item_exists(item_id)
@@ -14,6 +17,9 @@ class CartController < ApplicationController
 
     ids = active_cart.cart_items.map { |item| item.item_id }
 
+    # check if item is already in user's cart
+    # If the item is already present, increment it's quantity.
+    # If not, add it to the cart.
     if ids.include?(item_id)
       existing_item = CartItem.find_by(item_id: item_id, cart_id: active_cart.id)
       quantity = existing_item.quantity
@@ -35,11 +41,14 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  # Route for checking out cart items
   def checkout
     cart_items = active_cart.cart_items
 
     purchased_items = []
 
+    # For each cart item, update the remaining stock after purchasing
+    # and destroy the cart item
     cart_items.each do |cart_item|
       item = ensure_item_exists(cart_item.item_id)
       remaining_inventory = item.inventory_count - cart_item.quantity

@@ -1,3 +1,5 @@
+# CartItem class
+# Represent an copy of an Item that is contained in a Cart
 class CartItem < ApplicationRecord
   belongs_to :item
   belongs_to :cart
