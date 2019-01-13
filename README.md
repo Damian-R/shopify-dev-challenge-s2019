@@ -6,6 +6,8 @@ https://damian-reiter-shopify-dev.herokuapp.com
 I created the barebones online marketplace using Ruby on Rails.
 It supports all the basic functionality requested, as well as a session-based shopping cart, discount codes, and item filtering by category.
 
+The database is re-seeded every hour (at :00) in order to reset the stock of items in case you want to keep testing more :)
+
 # API
 > ❗ All endpoints are configured to use HTTP GET. In a real-world scenario, I wouldn't use GET for everything, and I know this doesn't follow best practices. I opted for ease-of-demoability, so all functionality can be explored via a web browser without needing external tools such as Postman ❗
 
