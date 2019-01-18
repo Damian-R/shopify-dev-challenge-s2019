@@ -26,7 +26,7 @@ class CartController < ApplicationController
       if item.inventory_count - quantity == 0
         render json: { message: "item does not have sufficient inventory count" } and return
       end
-      existing_item.update!(quantity: quantity + 1)
+      existing_item.update_attribute(:quantity, quantity + 1)
     else
       active_cart.cart_items << CartItem.create(item_id: item_id, cart_id: active_cart.id)
     end
@@ -36,7 +36,7 @@ class CartController < ApplicationController
 
   def add_discount
     if params[:code] == ENV['DISCOUNT_CODE']
-      active_cart.update!(discount_code: params[:code])
+      active_cart.update_attribute(:discount_code, params[:code])
     end
     redirect_to '/cart'
   end
@@ -52,7 +52,7 @@ class CartController < ApplicationController
     cart_items.each do |cart_item|
       item = ensure_item_exists(cart_item.item_id)
       remaining_inventory = item.inventory_count - cart_item.quantity
-      item.update!(inventory_count: remaining_inventory)
+      item.update_attribute(:inventory_count, remaining_inventory)
       purchased_items << { title: item.title, quantity_purchased: cart_item.quantity, remaining_inventory: remaining_inventory }
       cart_item.destroy
     end

@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
     stock = item.inventory_count
     message = "insufficient stock to purchase item id #{item_id}"
     if stock > 0
-      item.update!(inventory_count: stock - 1)
+      item.update_attribute(:inventory_count, stock - 1)
       message = "successfully purchased item id #{item_id}"
     end
     render json: { message: message, item: item }
