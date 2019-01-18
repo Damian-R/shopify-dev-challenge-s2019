@@ -77,6 +77,7 @@ Schema:
 
 ## Discounts
 > ❗ note: I just threw this part in for fun, don't feel as though you have to play along, I won't mind :)
+
 I added one discount code which can be applied to your cart by accessing `/cart/discount/:code`.
 
 I recently learned about [CTFs](https://ctfs.github.io/resources/) and was inspired to make a mini-challenge to reveal the discount code =).
