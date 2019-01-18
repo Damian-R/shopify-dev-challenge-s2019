@@ -47,6 +47,8 @@ class CartController < ApplicationController
 
     purchased_items = []
 
+    total = active_cart.total
+
     # For each cart item, update the remaining stock after purchasing
     # and destroy the cart item
     cart_items.each do |cart_item|
@@ -56,6 +58,7 @@ class CartController < ApplicationController
       purchased_items << { title: item.title, quantity_purchased: cart_item.quantity, remaining_inventory: remaining_inventory }
       cart_item.destroy
     end
-    render json: { amount_paid: active_cart.total, purchased_items: purchased_items }, status: :ok
+    active_cart.update_attribute(:discount_code, nil)
+    render json: { amount_paid: total, purchased_items: purchased_items }, status: :ok
   end
 end
