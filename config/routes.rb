@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/cart/checkout' => 'cart#checkout', :as => 'checkout'
   get '/cart/discount/:code' => 'cart#add_discount', :as => 'discount'
 
+  # what could this be :O
+  get '/secret' => 'application#secret', via: :all
+
   # catch all invalid routes
   match '*path' => 'application#no_route', via: :all
 end

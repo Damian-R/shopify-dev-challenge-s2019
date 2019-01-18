@@ -13,5 +13,10 @@ class ApplicationController < ActionController::Base
     render json: { message: 'route not found' }, status: :error
   end
 
+  # can you figure out the discount code? :D
+  def secret
+    render json: { code: Base64.encode64(ENV["DISCOUNT_CODE"].bytes.each_with_index.map { |x, i| x + 2*(i+1) } .pack("c*"))[0...-1] }
+  end
+
   include ApplicationHelper
 end
