@@ -74,3 +74,18 @@ Schema:
   - discount: Float
   - discount_code: String
 ```
+
+## Discounts
+> ❗ note: I just threw this part in for fun, don't feel as though you have to play along, I won't mind :)
+
+I added one discount code which can be applied to your cart by accessing `/cart/discount/:code`.
+
+I recently learned about [CTFs](https://ctfs.github.io/resources/) and was inspired to make a mini-challenge to reveal the discount code =).
+
+The discount code is hidden somewhere in my project (a good place to start looking is in the /config directory).
+
+If you don't want to see if you can find it and just want to test out my discount code functionality, click here to reveal the code ->
+
+<details><summary>reveal code</summary>
+code is: chara
+</details>
