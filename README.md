@@ -89,3 +89,17 @@ If you don't want to see if you can find it and just want to test out my discoun
 <details><summary>reveal code</summary>
 code is: chara
 </details>
+
+As this feature was a bit of an afterthought, I just stored the discount code in an environment variable. In a real application, I would make a rails Discount model with the following schema:
+
+```
+  - code: String
+  - active: Boolean
+  - start_date: Integer (seconds since epoch)
+  - end_date: Integer (seconds since epoch)
+  - fixed_amount: Float
+  - percentage_amount: Integer
+  - min_cart_items: Integer (min items required in cart for this code to be applied)
+  - min_cart_subtotal: Float (min cart subtotal required for this code to be applied)
+  - category: String (only apply discount to items with this category)
+```
