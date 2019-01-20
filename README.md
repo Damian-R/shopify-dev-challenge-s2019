@@ -90,6 +90,7 @@ If you don't want to see if you can find it and just want to test out my discoun
 code is: chara
 </details>
 
+
 As this feature was a bit of an afterthought, I just stored the discount code in an environment variable. In a real application, I would make a rails Discount model with the following schema:
 
 ```
